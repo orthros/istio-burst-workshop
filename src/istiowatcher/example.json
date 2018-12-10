@@ -1,0 +1,20 @@
+{
+    "status": "success",
+    "data": {
+        "resultType": "vector",
+        "result": [
+            {
+                "metric": {
+                    "destination_app": "worker",
+                    "destination_workload": "worker-deployment",
+                    "source_app": "frontend",
+                    "source_workload": "frontend-deployment"
+                },
+                "value": [
+                    1543901033.549,
+                    "0.9932203389830507"
+                ]
+            }
+        ]
+    }
+}

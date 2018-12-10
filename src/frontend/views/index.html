@@ -1,0 +1,66 @@
+<!-- Copyright 2018 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<!doctype html>
+<html>
+
+<head>
+    <title>String Hashr</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+</head>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+    $(function () {
+        var socket = io();
+        socket.on('calculation', function (msg) {
+            // Append to the list 
+            console.log('Appending! ' + msg);
+            $('#thelist').prepend($('<li>').append('<a>').append(msg));
+        });
+        $('form').submit(function () {
+            socket.emit('frequency', {
+                freq: $('#m').val()
+            });
+            return false;
+        });
+    });
+</script>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+            <h1 class="display-3">String Hashr!</h1>
+            <p class="lead">Lets hash some things!</p>
+        </div>
+    </div>
+    <div class="container text-center">
+        <h1 class="lead">What's the frequency?</h1>
+        <form action=" ">
+            <input id="m" class='form-control' type='' placeholder='5' autocomplete="off " />
+        </form>
+    </div>
+    <br></br>
+    <div class="container text-center">
+        <h1 class="lead">The current hash values</h1>
+        <ul id="thelist" style="list-style-type:none">
+        </ul>
+    </div>
+</body>
+
+</html>
